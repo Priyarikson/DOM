@@ -1,0 +1,222 @@
+
+DOM tree structure
+
+//document object model --dom is an interface for html documents.
+//the dom represents a web page in such a way that programs can change the document structure,style,content.
+//the dom is the object -oriented representation of a web page.
+//two standards for the dom -- w3c, whatwg.
+//both standarda define html elements as objects that can be accessed by js code ,properties,accessor methods,events for all html elements
+//dom object methods are actions you can perform on html elements
+//dom object properties are values you can get or set
+//dom standard provides a way for js to add ,get ,change or delete html elements programmatically.
+//the dom for a web page is constructed as a tree of objects,called nodes.
+//the object at the head of the tree is a document node.
+//the document is the interface that serves as an entry point for the web page's content,the dom tree.
+//html elements in the page are added to the dom tree under the document.they are called element nodes.
+//elements in the dom tree can have three types of relationships with the elements around them :parent, sibling, and child
+
+dom navigation
+
+befor we can begin to modify the dom with javascript,we have to navigate the dom tree to find the specific element nodes that we want to modify.
+two ways:finding it by identifier, navigating the dom tree.
+
+finding it by identifier
+
+the fastest look up method is lookig up an element by identifier
+4 ways:
+ID
+Tag Name 
+Class
+CSS query selector
+
+ finding a dom node
+
+ document.getElementById(id) method
+ takes in a parameter id.  //id of the element to look up returns element object.
+ if no match the function will return null.
+
+ID
+
+<div id='exampleDiv'>Some text here</div>
+<script>
+  const elem = document.getElementById( 'exampleDiv' );
+</script>
+
+Tag name
+get an element by the tag name . returns a live html collection of the matching elements.
+
+<div id='exampleDiv1'>Some text here</div>
+<div id='exampleDiv2'>Some text here</div>
+<div id='exampleDiv3'>Some text here</div>
+<script>
+  const elems = document.getElementsByTagName( 'div' ); //html tag name
+</script>
+
+Class
+get an element by the class attribute
+
+<div class='example'>Some text here</div>
+<img class='example'></img>
+<style class='example'></style>
+<script>
+  const elems = document.getElementsByClassName( 'example' );
+</script>
+
+CSS query selector
+two functions, querySelector() and querySelectorAll()are used to get HTML elements by CSS query selector.they both take in a single string parameter that represents a CSS selector string.
+
+<div id='id1'>Some text here</div>
+<img class='class'></img>
+<script>
+  const elem = document.querySelector( 'img.class' );
+  const elems = document.querySelectorAll( 'img.class, #id1' );
+</script>
+
+getElementsByTagName, getElementsByClassName, querySelector, querySelectorAll functions are not limited to only the document object;
+they can also be called on element nodes.if they are called on an element node the resulting elements collection returned by the function will be limited to only the children of the element,which the function was called on.
+<div id="div1">
+    <div id="div2">
+        <div id="div3">dsjdfjoilkvfj</div>
+    </div>
+    <div>xlkcjzvn</div>
+</div>
+<script>
+    const elem = document.getElementById('div1');
+    const elems = elem.getElementsByTagName('div');
+    console.log(elems);
+</script>
+
+navigating the dom tree
+through the element relationsships.
+traverse -travel across
+we can traverse the DOM tree by going from node to node with the properties parentNode, childNodes, firstChild, lastChild, previousSibling and nextSibling
+
+parentNode
+
+<div id="div1">
+    <div id="div2">
+        <div id="div3">dsjdfjoilkvfj</div>
+    </div>
+    
+</div>
+<script>
+    const div3 = document.getElementById('div3');
+    const div2 = div3.parentNode;
+    const div1 = div2.parentNode;
+    console.log(div2);
+    console.log(div1)
+</script>
+
+sibling nodes
+<div>
+    <div id="div1">first</div>
+    <div id="div2">second</div>
+    <div id="div3">third</div>
+</div>
+<script>
+    const div2 = document.getElementById('div2');
+    const sibling1 = div2.previousSibling;
+    const sibling2 = div2.nextSibling;
+    
+    console.log(sibling1);//div1
+    console.log(sibling2);//div3
+</script>
+
+childNodes - returns a NodeList of the node's children
+firstChild - returns the first node's child.returns null if the node has no children.
+lastChild - returns the last node's child.returns null if the node has no children.
+
+DOM Manipulation
+we can add elements or nodes,remove elements or nodes and update elements or nodes.
+
+to create a new element or node we can use the document.createElement(), Node.cloneNode(), document.createTextNode() functions..
+//createElement is called on the global document object and takes in two arguments.
+//first is tagName.--is a string that specifies the  type of element to be created.
+//second argument is options -- ElementCreationObject that contains a single property named 'is'.. allow us to specify if the element being added is a custom element.
+
+creating new DOM nodes.3 ways
+createElement()
+<script>
+    const newElem = document.createElement('div');
+    console.log(newElem);
+</script>
+
+
+cloneNode()
+cloneNode is called on a DOM node object and duplicates the node that it is called on..
+it takes in one argument , a Boolean called deep, and returns a copy of the node to clone.
+deep is set to false cloneNode will do a shallow clone and only clone the node that it was called on.
+deep is set to true ,cloneNode will do a deep copy  and copy the node and all of its child nodes.
+cloning a node copies all of its attributes and their values.
+
+      <div id='div1'>
+        <div id='div2'> Text </div>
+      </div>
+      <script>
+        const div1 = document.getElementById( 'div1' );
+        const div1Clone = div1.cloneNode( false );
+        const div1Div2Clone = div1.cloneNode( true );
+        console.log(div1Clone);
+        console.log(div1Div2Clone);
+      </script>
+
+
+createTextNode()
+is used to create text-only nodes.takes in one argument a string called data, and returns a text node.
+      <script>
+      const textNode = document.createTextNode( 'Text goes here' );
+      </script>
+
+
+adding new nodes to the DOM tree to see changes in our application.
+Node.appendChild()
+adds a node to the end of the child list of the node it is called on .
+<div id='div1'></div>
+<script>
+  const div1 = document.getElementById( 'div1' );
+  const div2 = document.createElement( 'div' );
+  div1.appendChild(div2);
+</script>
+
+Node.insertBefore()
+
+<div id='div1'>
+        <div id='div2'></div>
+      </div>
+      <script>
+        const div1 = document.getElementById( 'div1' );
+        const div2 = document.getElementById( 'div2' );
+        const div3 = document.createElement( 'div' );
+        const div4 = document.createElement( 'div' );
+        div1.insertBefore( div3, div2 );//div2 reference node
+        div1.insertBefore( div4, null );//null as the reference node
+        console.log(div1);//in div1 child list div3 is inserted infront f of div2 and div4 is appended to the end of the div1 child list.
+      </script>
+
+Node.removeChild()
+
+      <div id='div1'>
+        <div id='div2'></div>
+      </div>
+      <script>
+        const div1 = document.getElementById( 'div1' );
+        const div2 = document.getElementById( 'div2' );
+        div1.removeChild( div2 );
+        console.log(div1);
+      </script>
+
+      //  Updating Nodes in the DOM
+
+      Node.replaceChild()
+
+<div id='div1'>
+        <div id='div2'></div>
+      </div>
+      <div id='div3'></div>
+      <script>
+        const div1 = document.getElementById( 'div1' );
+        const div2 = document.getElementById( 'div2' );
+        const div3 = document.getElementById( 'div3' );
+        div1.replaceChild( div3, div2 );//newchild div3 and oldchild div2  //div2 will be replaced with div3 in div1.
+        console.log(div1);
+      </script>

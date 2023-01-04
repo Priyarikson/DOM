@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- root element --> 
+<head><!--element-->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Title</title><!--element-->
+</head>
+<body><!--element-->
+    <div id='div1'></div>
+<script>
+  const div1 = document.getElementById( 'div1' );
+  div1.setAttribute( 'testName', 'testValue' );
+  console.log(div1)
+  div1.getAttribute( 'testName' );
+  div1.removeAttribute( 'testName' );
+  console.log(div1);
+</script>
+</body>
+</html>
