@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping</title>
+</head>
+<body>
+    <h1>Shopping List</h1>
+
+  <div id="userInteractionHolder">
+    <input type="text"><button id="addButton">Add</button>
+  </div>
+
+  <div id="shoppingListHolder">
+    <table id="shoppingList">
+      <tr>
+        <th>Item</th>
+        <th>Remove</th>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    /* Code goes here*/
+    const button1 = getElementById('addButton');
+    button1.addEventListener('click', _addRow());
+    function _addRow(e){
+      const button = getElementById('addButton');
+      const inputBox = e.target.previousSibling;
+      const value = inputBox.value;
+      inputBox.value = " ";
+      
+    }
+  </script>
+</body>
+</html>

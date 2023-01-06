@@ -7,14 +7,15 @@
     <title>My Title</title><!--element-->
 </head>
 <body><!--element-->
-    <div id='div1'></div>
-<script>
-  const div1 = document.getElementById( 'div1' );
-  div1.setAttribute( 'testName', 'testValue' );
-  console.log(div1)
-  div1.getAttribute( 'testName' );
-  div1.removeAttribute( 'testName' );
-  console.log(div1);
-</script>
+    <div id="div1">Click me!</div>
+    <script>
+        const div1 = document.getElementById('div1');
+        div1.addEventListener('click',(e)=>{
+            e.target.style.backgroundColor = 'red';
+        }, true);
+        div1.removeEventListener('click',(e)=>{
+            e.target.style.backgroundColor = 'red';
+        }, true);
+    </script>
 </body>
 </html>

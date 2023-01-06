@@ -1,0 +1,90 @@
+<!--Starting file-->
+<html>
+<head>
+  <title>Advanced JavaScript - Lesson 3 - Exercise 21 </title>
+  <script>
+    const data = [
+      {
+        from: 'Zach',
+        to: 'Tim',
+        subject: 'Hello',
+        body: 'Nice to meet you Tim. Looking forward to discussing business next week.'
+      },
+      {
+        from: 'Kirsten',
+        to: 'Tim',
+        subject: 'Car for sale',
+        body: 'I saw that you are selling your car. I am intersted.'
+      },
+      {
+        from: 'Jessica',
+        to: 'Tim',
+        subject: 'Code review',
+        body: 'When will you finish the code review? The deadline for our application is next week and we are behind schedule.'
+      },
+      {
+        from: 'Walter',
+        to: 'Tim',
+        subject: 'Donations',
+        body: 'Thank you for your generous donation. Can you please send me your address? We are sending our top 5 donors thank you placards.'
+      },
+      {
+        from: 'Tristain',
+        to: 'Tim',
+        subject: 'Birthday party',
+        body: 'We should plan our sister\'s surprise birthday party soon. Venues tend will start getting booked over the next two weeks.'
+      }
+    ]
+  </script>
+</head>
+<body>
+  <div id="emailTableHolder"></div>
+  <script>
+    /* Code goes here */
+    /* Insert the table into the emailTableHolder div */
+    // Create table
+    const table = document.createElement( 'table' );
+    //make a new scope block with curly braces{}
+    // Create headers
+    {
+        //create an array to hold the header types..
+      const headers = [ 'to', 'from', 'subject' ];
+      //create a table row element.
+      const row = document.createElement( 'tr' );//tr table row element.
+      //loop through the headers array with a forEach function.
+      headers.forEach( h => {
+        //create table header element and save it into the header variable.
+        const header = document.createElement( 'th' );
+        header.appendChild( document.createTextNode( h.charAt( 0 ).toUpperCase() + h.substr( 1 ) ) );//capitalizing header first character//appending a new text node//text node should contain the header name.
+        row.appendChild( header );//append the header element stored in header as a child to the table row stored in row.
+      } );
+      table.appendChild( row );//append the table row stored in row as a child to the table stored in table
+      console.log(table);
+    }
+    //new scope with curly br h76vcb 097, l` we 3sfhc≈ds.
+    {
+//loop over the data array ,data,with a forEach loop
+        data.forEach( email => {
+            //create a new table row element and save it in the row variable.
+            const row = document.createElement('tr');
+            const to = document.createElement('td');
+            const subject = document.createElement('td');
+            const from = document.createElement('td');
+            
+            to.appendChild( document.createTextNode( email.to ) );
+            from.appendChild( document.createTextNode( email.from ) );
+            subject.appendChild( document.createTextNode( email.subject ) );
+
+            row.appendChild(to);
+            row.appendChild(from);
+            row.appendChild(subject);
+
+            table.appendChild( row );
+
+        } );
+    } 
+    // Append table to document
+    document.getElementById( 'emailTableHolder' ).appendChild( table );
+  </script>
+</body>
+</html>
