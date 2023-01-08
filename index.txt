@@ -220,3 +220,53 @@ Node.removeChild()
         div1.replaceChild( div3, div2 );//newchild div3 and oldchild div2  //div2 will be replaced with div3 in div1.
         console.log(div1);
       </script>
+
+//////  innerHTML
+
+<div id='div1'></div>
+<script>
+  const div1 = document.getElementById( 'div1' );
+  div1.innerHTML = '<p>Paragraph1</p><p>Paragraph2</p>';
+  console.log(div1);
+</script>
+
+// manipulate an element node is by changing the nodes attributes..
+<div id='div1'></div>
+<script>
+  const div1 = document.getElementById( 'div1' );
+  div1.setAttribute( 'testName', 'testValue' );
+  console.log(div1)
+  div1.getAttribute( 'testName' );
+  div1.removeAttribute( 'testName' );
+  console.log(div1);
+</script>
+
+//using the classlist object
+//classList object has six helper functions
+//DOM Events and Event objects
+DOM Event > event listener > event handler
+event handlers are javascript functions that we programmers, assign to an event. this is called registering an event handler.
+best way to add an event handler is with the addEventListener function.takes in three parameters,type,listener and either options or useCapture.
+
+////Event Listeners
+<button id='button1'>Click me!</button>
+<script>
+  const button1 = document.getElementById( 'button1' );
+  //click event ,handler function
+  //case sensitive event type to listen for =>click
+  button1.addEventListener( 'click', () => {
+    console.log( 'Clicked' );
+  }, false );
+</script>
+
+////removeEventListener
+<button id='button1'>Click me!</button>
+<script>
+  const button1 = document.getElementById( 'button1' );
+  function eventHandler() { console.log( 'clicked!' )}
+  button1.addEventListener( 'click', eventHandler, true );
+  button1.removeEventListener( 'click', eventHandler, true );
+</script>
+
+////Event Objects and Handling Events
+
